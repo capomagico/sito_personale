@@ -1,8 +1,22 @@
-<p>svelte-cms home page!</p>
+<div class="homepage">
+	<div class="container text-center">
+		<div class="oggetto">hwdedbwub</div>
+	</div>
+</div>
 
 <style>
-	p {
-		font-family: lyon;
-		font-size: 40px;
+	.homepage {
+		background-color: black;
+		display: flex;
+		height: 100vh;
+		margin: 0;
+		align-items: center;
+	}
+	.oggetto {
+		color: #f27200;
+		font-size: 60px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 </style>
