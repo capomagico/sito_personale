@@ -26,17 +26,17 @@
 				0.1,
 				1000
 			);
-			camera.position.z = 12;
+			camera.position.z = 9;
 
 			// Renderer con alta risoluzione
 			renderer = new THREE.WebGLRenderer({ antialias: true });
 			renderer.setSize(container.clientWidth, container.clientHeight);
-			renderer.setPixelRatio(window.devicePixelRatio); // Aumenta la risoluzione
+			renderer.setPixelRatio(window.devicePixelRatio);
 			container.appendChild(renderer.domElement);
 
 			// Environment Map ad alta risoluzione
 			const loader = new THREE.TextureLoader();
-			textureEquirec = loader.load('src/components/Studio Small 09.jpg');
+			textureEquirec = loader.load('src/components/Misty Cloudy Sky 8k.jpeg');
 			textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
 			scene.environment = textureEquirec;
 
@@ -65,21 +65,17 @@
 			directionalLight.position.set(0, 1, 0);
 			scene.add(directionalLight);
 
-			// Inizializzazione di OrbitControl
+			// Inizializzazione di OrbitControl con smorzamento
 			controls = new OrbitControls(camera, renderer.domElement);
-
-			// Aggiunta del listener per l'evento di zoom
-			controls.addEventListener('change', function () {
-				// Controlla se il livello di zoom ha superato una certa soglia
-				if (camera.position.z < 9) {
-					window.location.href = 'src/routes/homepage/+page.svelte';
-				}
-			});
+			controls.enableDamping = true; // Abilita lo smorzamento (inerzia)
+			controls.dampingFactor = 0.05; // Fattore di smorzamento
+			controls.enableZoom = false; // Disabilita la possibilità di zoomare
 		}
 
 		function animate() {
 			requestAnimationFrame(animate);
 			globo.rotation.y += 0.002;
+			controls.update(); // Aggiorna i controlli per applicare lo smorzamento
 			renderer.render(scene, camera);
 		}
 	});

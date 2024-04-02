@@ -1,5 +1,4 @@
-<div class="homepage">ciao</div>
-<link rel="stylesheet" href="https://unpkg.com/tailwindcss@3.4.1/src/css/preflight.css" />
+<a href="/" class="homepage">ciao</a>
 
 <style>
 	.homepage {
