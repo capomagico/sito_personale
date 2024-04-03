@@ -70,7 +70,7 @@
 	.custom-cursor {
 		width: 100px;
 		height: 100px;
-		background-image: url('src/components/cursore_0deg.svg');
+		background-image: url('https://raw.githubusercontent.com/capomagico/sito_personale/main/src/components/cursore_0deg.svg');
 		transform: scale(0.666) rotate(-24.159deg) translateY(-52px) translateX(-38px);
 		transform-origin: center;
 		pointer-events: none;
@@ -79,7 +79,7 @@
 	.custom-cursor-click {
 		width: 100px;
 		height: 100px;
-		background-image: url('src/components/cursore_click_0deg.svg');
+		background-image: url('https://raw.githubusercontent.com/capomagico/sito_personale/main/src/components/cursore_click_0deg.svg');
 		transform: scale(0.666) rotate(-24.159deg) translateY(-52px) translateX(-30px);
 		transform-origin: center;
 		pointer-events: none;
