@@ -3,29 +3,43 @@
 	import '../styles.css';
 	import { onMount } from 'svelte';
 
-	let cursorX = 0;
-	let cursorY = 0;
+	let x = 0;
+	let y = 0;
 	let isClickable = false;
-
-	function handleMouseMove(event) {
-		cursorX = event.clientX;
-		cursorY = event.clientY;
+	let cursorcontainer = 'custom-cursor';
+	function updateMousePosition(event) {
+		x = event.clientX;
+		y = event.clientY;
+	}
+	function checkIfClickable(element) {
+		return (
+			(['A', 'BUTTON', 'INPUT'].includes(element.tagName) &&
+				(element.hasAttribute('href') || ['button', 'submit'].includes(element.type))) ||
+			element.onclick != null
+		);
+	}
+	function updateCursorStatus() {
+		cursorcontainer = isClickable ? 'custom-cursor-click' : 'custom-cursor';
+	}
+	function handleMouseOver(event) {
+		isClickable = checkIfClickable(event.target);
+		updateCursorStatus();
 	}
 
-	function handleMouseEnter() {
-		isClickable = true;
-	}
-
-	function handleMouseLeave() {
+	function handleMouseOut() {
 		isClickable = false;
+		updateCursorStatus();
 	}
-
 	onMount(() => {
-		document.addEventListener('mousemove', handleMouseMove);
-	});
+		document.addEventListener('mousemove', updateMousePosition);
+		document.addEventListener('mouseover', handleMouseOver);
+		document.addEventListener('mouseout', handleMouseOut);
 
-	onDestroy(() => {
-		document.removeEventListener('mousemove', handleMouseMove);
+		return () => {
+			document.removeEventListener('mousemove', updateMousePosition);
+			document.removeEventListener('mouseover', handleMouseOver);
+			document.removeEventListener('mouseout', handleMouseOut);
+		};
 	});
 </script>
 
@@ -39,31 +53,37 @@
 
 <slot />
 
-<div class="custom-cursor {isClickable ? 'custom-cursor-click' : ''}" />
+<div class="track">
+	<div style="left: {x}px; top: {y}px;">
+		<div class={cursorcontainer}></div>
+	</div>
+</div>
 
 <style>
-	.custom-cursor {
+	:global(*) {
+		cursor: none;
+	}
+	.track > div {
 		position: fixed;
-		top: 0;
-		left: 0;
+		pointer-events: none;
+	}
+	.custom-cursor {
 		width: 100px;
 		height: 100px;
 		background-image: url('src/components/cursore_0deg.svg');
-		background-size: cover;
-		transform: scale(0.666) rotate(-24.159deg);
+		transform: scale(0.666) rotate(-24.159deg) translateY(-52px) translateX(-38px);
 		transform-origin: center;
 		pointer-events: none;
-		z-index: 9999;
+		z-index: 100;
 	}
 
 	.custom-cursor-click {
-		width: 100%;
-		height: 100%;
+		width: 100px;
+		height: 100px;
 		background-image: url('src/components/cursore_click_0deg.svg');
-		background-size: cover;
-		transform: scale(0.666) rotate(-24.159deg) translateY(-90px) translateX(45px);
+		transform: scale(0.666) rotate(-24.159deg) translateY(-52px) translateX(-30px);
 		transform-origin: center;
 		pointer-events: none;
-		z-index: 9999;
+		z-index: 100;
 	}
 </style>
