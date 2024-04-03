@@ -36,6 +36,8 @@
 />
 <link rel="stylesheet" href="https://unpkg.com/tailwindcss@3.4.1/src/css/preflight.css" />
 
+<slot />
+
 <div class="custom-cursor {isClickable ? 'custom-cursor-click' : ''}" />
 
 <style>
