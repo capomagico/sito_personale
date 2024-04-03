@@ -2,14 +2,29 @@
 	import Navbar from '$components/Navbar.svelte';
 	import '../styles.css';
 
-	document.addEventListener('mousemove', (event) => {
-		const cursorContainer = document.getElementById('custom-cursor-container');
-		const offsetX = 27; // Adjust this value based on your cursor's design
-		const offsetY = 18; // Adjust this value based on your cursor's design
-		const x = event.clientX - offsetX;
-		const y = event.clientY - offsetY;
-		const transform = `translate(${x}px, ${y}px)`;
-		cursorContainer.style.transform = transform;
+	let cursorX = 0;
+	let cursorY = 0;
+	let isClickable = false;
+
+	function handleMouseMove(event) {
+		cursorX = event.clientX;
+		cursorY = event.clientY;
+	}
+
+	function handleMouseEnter() {
+		isClickable = true;
+	}
+
+	function handleMouseLeave() {
+		isClickable = false;
+	}
+
+	onMount(() => {
+		document.addEventListener('mousemove', handleMouseMove);
+	});
+
+	onDestroy(() => {
+		document.removeEventListener('mousemove', handleMouseMove);
 	});
 </script>
 
@@ -21,34 +36,30 @@
 />
 <link rel="stylesheet" href="https://unpkg.com/tailwindcss@3.4.1/src/css/preflight.css" />
 
-<div id="custom-cursor-container">
-	<div id="custom-cursor"></div>
-</div>
-
-<slot />
+<div class="custom-cursor {isClickable ? 'custom-cursor-click' : ''}" />
 
 <style>
-	/* Add the following CSS to set the custom cursor */
-	:global(body) {
-		cursor: none;
-	}
-
-	#custom-cursor-container {
+	.custom-cursor {
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 70px; /* Scaled up size */
-		height: 70px; /* Scaled up size */
-		transform-origin: center;
-		pointer-events: none;
-	}
-
-	#custom-cursor {
-		width: 100%;
-		height: 100%;
+		width: 100px; /* Imposta la larghezza desiderata */
+		height: 100px; /* Imposta l'altezza desiderata */
+		/* Aggiungi il resto delle tue proprietà CSS personalizzate */
 		background-image: url('src/components/cursore_0deg.svg');
 		background-size: cover;
-		transform: scale(0.666) rotate(-24.159deg); /* Scale down to original size and apply rotation */
+		transform: scale(0.666) rotate(-24.159deg);
+		transform-origin: center;
+		pointer-events: none;
+		z-index: 9999;
+	}
+
+	.custom-cursor-click {
+		width: 100%;
+		height: 100%;
+		background-image: url('src/components/cursore_click_0deg.svg');
+		background-size: cover;
+		transform: scale(0.666) rotate(-24.159deg) translateY(-90px) translateX(45px);
 		transform-origin: center;
 	}
 </style>
