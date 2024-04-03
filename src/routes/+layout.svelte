@@ -64,7 +64,7 @@
 		cursor: none;
 	}
 	.track > div {
-		position: fixed;
+		position: absolute;
 		pointer-events: none;
 	}
 	.custom-cursor {
@@ -74,7 +74,6 @@
 		transform: scale(0.666) rotate(-24.159deg) translateY(-52px) translateX(-38px);
 		transform-origin: center;
 		pointer-events: none;
-		z-index: 100;
 	}
 
 	.custom-cursor-click {
@@ -84,6 +83,5 @@
 		transform: scale(0.666) rotate(-24.159deg) translateY(-52px) translateX(-30px);
 		transform-origin: center;
 		pointer-events: none;
-		z-index: 100;
 	}
 </style>
