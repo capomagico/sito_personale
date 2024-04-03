@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Navbar from '$components/Navbar.svelte';
 	import '../styles.css';
+	import { onMount } from 'svelte';
 
 	let cursorX = 0;
 	let cursorY = 0;
@@ -45,9 +46,8 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 100px; /* Imposta la larghezza desiderata */
-		height: 100px; /* Imposta l'altezza desiderata */
-		/* Aggiungi il resto delle tue proprietà CSS personalizzate */
+		width: 100px;
+		height: 100px;
 		background-image: url('src/components/cursore_0deg.svg');
 		background-size: cover;
 		transform: scale(0.666) rotate(-24.159deg);
@@ -63,5 +63,7 @@
 		background-size: cover;
 		transform: scale(0.666) rotate(-24.159deg) translateY(-90px) translateX(45px);
 		transform-origin: center;
+		pointer-events: none;
+		z-index: 9999;
 	}
 </style>
