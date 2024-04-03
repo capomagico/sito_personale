@@ -1,4 +1,4 @@
-<a href="/" class="homepage">ciao</a>
+<div class="homepage">CIAO</div>
 
 <style>
 	.homepage {
