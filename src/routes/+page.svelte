@@ -36,26 +36,31 @@
 
 			// Environment Map ad alta risoluzione
 			const loader = new THREE.TextureLoader();
-			textureEquirec = loader.load('src/components/Misty Cloudy Sky 8k.jpeg');
+			textureEquirec = loader.load(
+				'https://github.com/capomagico/sito_personale/blob/84e6f4e3af7cf05b97e1632c81cfdb74369d2bc0/src/components/Misty%20Cloudy%20Sky%208k.jpeg'
+			);
 			textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
 			scene.environment = textureEquirec;
 
 			// Caricamento dell'oggetto 3D con materiale cromato
 			const objLoader = new OBJLoader();
-			objLoader.load('src/components/globo.obj', function (object) {
-				object.traverse(function (child) {
-					if (child instanceof THREE.Mesh) {
-						child.material = new THREE.MeshStandardMaterial({
-							color: 0xffffff,
-							metalness: 1.0,
-							roughness: 0.0,
-							envMap: textureEquirec
-						});
-					}
-				});
-				globo = object;
-				scene.add(globo);
-			});
+			objLoader.load(
+				'https://github.com/capomagico/sito_personale/blob/70f04ba6d5b80b7dabc75d16f3ffdbe61d84f6d3/src/components/globo.obj',
+				function (object) {
+					object.traverse(function (child) {
+						if (child instanceof THREE.Mesh) {
+							child.material = new THREE.MeshStandardMaterial({
+								color: 0xffffff,
+								metalness: 1.0,
+								roughness: 0.0,
+								envMap: textureEquirec
+							});
+						}
+					});
+					globo = object;
+					scene.add(globo);
+				}
+			);
 
 			// Luci
 			const ambientLight = new THREE.AmbientLight(0xffffff);
