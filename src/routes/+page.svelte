@@ -37,7 +37,7 @@
 			// Environment Map ad alta risoluzione
 			const loader = new THREE.TextureLoader();
 			textureEquirec = loader.load(
-				'https://github.com/capomagico/sito_personale/blob/main/src/components/Misty%20Cloudy%20Sky%208k.jpeg?raw=true'
+				'https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/noon_grass.jpg'
 			);
 			textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
 			scene.environment = textureEquirec;
