@@ -45,6 +45,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tweenjs/tween.js": "^23.1.1",
+		"createjs": "^1.0.1",
 		"three": "^0.163.0"
 	}
 }
