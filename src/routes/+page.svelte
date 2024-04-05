@@ -188,7 +188,6 @@
 				);
 
 				if (sferettaIntersecata) {
-					// Qui puoi aggiungere condizioni specifiche per ogni sferetta
 					switch (sferettaIntersecata.object.name) {
 						case 'sferetta1':
 							// Azioni specifiche per sferetta1
@@ -202,15 +201,7 @@
 							// Azioni specifiche per sferetta3
 							sferettaIntersecata.object.scale.set(1.3, 1.3, 1.3); // Scala leggermente più ingrandita
 							break;
-						// Aggiungi più casi se necessario
 					}
-
-					// Aggiungi una transizione veloce per l'ingrandimento
-					sferettaIntersecata.object.material.transparent = true;
-					sferettaIntersecata.object.material.opacity = 0.5; // Inizia con opacità ridotta
-					new TWEEN.Tween(sferettaIntersecata.object.material)
-						.to({ opacity: 1 }, 200) // Transizione a opacità piena in 200ms
-						.start();
 				}
 			}
 		}
