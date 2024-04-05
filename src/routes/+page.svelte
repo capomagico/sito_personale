@@ -192,20 +192,14 @@
 					switch (sferettaIntersecata.object.name) {
 						case 'sferetta1':
 							// Azioni specifiche per sferetta1
-							sferettaIntersecata.object.material.color.set(0xf27200); // Colore arancione
-							sferettaIntersecata.object.material.emissive.set(0xf27200); // Emissività arancione
 							sferettaIntersecata.object.scale.set(1.3, 1.3, 1.3); // Scala leggermente più ingrandita
 							break;
 						case 'sferetta2':
 							// Azioni specifiche per sferetta2
-							sferettaIntersecata.object.material.color.set(0xf27200); // Colore arancione
-							sferettaIntersecata.object.material.emissive.set(0xf27200); // Emissività arancione
 							sferettaIntersecata.object.scale.set(1.3, 1.3, 1.3); // Scala leggermente più ingrandita
 							break;
 						case 'sferetta3':
 							// Azioni specifiche per sferetta3
-							sferettaIntersecata.object.material.color.set(0xf27200); // Colore arancione
-							sferettaIntersecata.object.material.emissive.set(0xf27200); // Emissività arancione
 							sferettaIntersecata.object.scale.set(1.3, 1.3, 1.3); // Scala leggermente più ingrandita
 							break;
 						// Aggiungi più casi se necessario
